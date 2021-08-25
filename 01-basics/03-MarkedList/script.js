@@ -37,12 +37,10 @@ const RootComponent = defineComponent({
   },
   computed: {
     emailsFiltered() {
-      return emails.map((email) => {
-        return {
-          marked: this.search.length && email.toLowerCase().includes(this.search.toLowerCase()),
-          email,
-        };
-      });
+      return emails.map((email) => ({
+        marked: this.search.length && email.toLowerCase().includes(this.search.toLowerCase()),
+        email,
+      }));
     },
   },
 });

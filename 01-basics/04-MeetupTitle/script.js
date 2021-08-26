@@ -1,4 +1,4 @@
-// import { createApp } from './vendor/vue.esm-browser.js';
+import { createApp, defineComponent } from './vendor/vue.esm-browser.js';
 
 const API_URL = 'https://course-vue.javascript.ru/api';
 
@@ -14,4 +14,23 @@ function fetchMeetupById(meetupId) {
   });
 }
 
-// Требуется создать Vue приложение
+const RootComponent = defineComponent({
+  data() {
+    return {
+      pickedMeetupId: null,
+      pickedMeetupTitle: null,
+    };
+  },
+  watch: {
+    async pickedMeetupId(id) {
+      if (!id) return;
+
+      const { title } = await fetchMeetupById(id);
+      this.pickedMeetupTitle = title;
+    },
+  },
+});
+
+const app = createApp(RootComponent);
+
+app.mount('#app');

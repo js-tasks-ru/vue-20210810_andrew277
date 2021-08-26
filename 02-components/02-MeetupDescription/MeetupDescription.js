@@ -7,5 +7,5 @@ export default defineComponent({
     description: String,
   },
 
-  template: `<p class="meetup-description">Описание должно быть здесь</p>`,
+  template: `<p class="meetup-description">{{ description }}</p>`,
 });

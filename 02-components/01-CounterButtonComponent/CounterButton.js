@@ -6,14 +6,17 @@ export default defineComponent({
   emits: ['update:count'],
 
   props: {
-    count: Number,
+    count: {
+      type: Number,
+      default: 0,
+    },
   },
 
   methods: {
     countHandler() {
-      this.$emit('update:count', 1 + (this.count || 0));
+      this.$emit('update:count', 1 + this.count);
     },
   },
 
-  template: `<button type="button" @click='countHandler'>{{ count || 0 }}</button>`,
+  template: `<button type="button" @click='countHandler'>{{ count }}</button>`,
 });
